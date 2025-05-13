@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Listado de Entradas</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container my-5">
+    <h1 class="mb-4">Listado de Entradas</h1>
+    
+    <a th:href="@{/admin/entrada/nueva}" class="btn btn-primary mb-3">Nueva Entrada</a>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Sala</th>
+                <th>Fecha</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="entrada : ${entradas}">
+                <td th:text="${entrada.id}"></td>
+                <td th:text="${entrada.cliente}"></td>
+                <td th:text="${entrada.sala.nombre}"></td>
+                <td th:text="${#temporals.format(entrada.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${#numbers.formatDecimal(entrada.precio, 1, 2)} + ' €'"></td>
+                <td>
+                    <a th:href="@{/admin/entrada/editar/{id}(id=${entrada.id})}" class="btn btn-sm btn-warning">Editar</a>
+                    <a th:href="@{/admin/entrada/borrar/{id}(id=${entrada.id})}" class="btn btn-sm btn-danger">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title th:text="${sala.id != null} ? 'Editar Sala' : 'Nueva Sala'"></title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container my-5">
+    <h1 class="mb-4" th:text="${sala.id != null} ? 'Editar Sala' : 'Nueva Sala'"></h1>
+    
+    <form th:action="@{/admin/sala/submit}" th:object="${sala}" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+        </div>
+        <div class="mb-3">
+            <label for="capacidad" class="form-label">Capacidad</label>
+            <input type="number" class="form-control" id="capacidad" th:field="*{capacidad}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/admin/sala/}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

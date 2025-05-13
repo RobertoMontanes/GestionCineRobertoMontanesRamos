@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Inicio - Cine</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container my-5">
+    <h1 class="mb-4">Gestión del Cine</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2>Resumen</h2>
+                </div>
+                <div class="card-body">
+                    <p>Total Salas: <span th:text="${#lists.size(salas)}" class="badge bg-secondary"></span></p>
+                    <p>Total Entradas vendidas: <span th:text="${#lists.size(entradas)}" class="badge bg-success"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h2>Acciones rápidas</h2>
+                </div>
+                <div class="card-body">
+                    <a th:href="@{/admin/sala/nueva}" class="btn btn-success me-2">Nueva Sala</a>
+                    <a th:href="@{/admin/entrada/nueva}" class="btn btn-success">Nueva Entrada</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h2>Últimas Salas</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Capacidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="sala : ${salas}">
+                                <td th:text="${sala.nombre}"></td>
+                                <td th:text="${sala.capacidad}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h2>Últimas Entradas</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Sala</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="entrada : ${entradas}">
+                                <td th:text="${entrada.cliente}"></td>
+                                <td th:text="${entrada.sala.nombre}"></td>
+                                <td th:text="${#numbers.formatDecimal(entrada.precio, 1, 2)} + ' €'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

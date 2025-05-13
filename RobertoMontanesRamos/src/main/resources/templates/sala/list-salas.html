@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Listado de Salas</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container my-5">
+    <h1 class="mb-4">Listado de Salas</h1>
+    
+    <a th:href="@{/admin/sala/nueva}" class="btn btn-primary mb-3">Nueva Sala</a>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Capacidad</th>
+                <th>Entradas vendidas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sala : ${salas}">
+                <td th:text="${sala.id}"></td>
+                <td th:text="${sala.nombre}"></td>
+                <td th:text="${sala.capacidad}"></td>
+                <td th:text="${#lists.size(sala.entradas)}"></td>
+                <td>
+                    <a th:href="@{/admin/sala/editar/{id}(id=${sala.id})}" class="btn btn-sm btn-warning">Editar</a>
+                    <a th:href="@{/admin/sala/borrar/{id}(id=${sala.id})}" class="btn btn-sm btn-danger">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
