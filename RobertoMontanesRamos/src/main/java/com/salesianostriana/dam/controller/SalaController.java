@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SalaController {
 
-    private final SalaService salaService;
+	private final SalaService salaService;
 
-    @GetMapping("/")
-    public String listSalas(Model model) {
-        model.addAttribute("salas", salaService.findAll());
-        return "sala/list-salas";
-    }
+	@GetMapping("/")
+	public String listSalas(Model model) {
+		model.addAttribute("salas", salaService.findAll());
+		return "sala/list-salas";
+	}
 
-    @GetMapping("/nueva")
-    public String showForm(Model model) {
-        model.addAttribute("sala", new Sala());
-        return "sala/sala-form";
-    }
+	@GetMapping("/nueva")
+	public String showForm(Model model) {
+		model.addAttribute("sala", new Sala());
+		return "sala/sala-form";
+	}
 
-    @PostMapping("/submit")
-    public String submit(@ModelAttribute("sala") Sala sala) {
-        salaService.save(sala);
-        return "redirect:/admin/sala/";
-    }
+	@PostMapping("/submit")
+	public String submit(@ModelAttribute("sala") Sala sala) {
+		salaService.save(sala);
+		return "redirect:/admin/sala/";
+	}
 
-    @GetMapping("/editar/{id}")
-    public String edit(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("sala", salaService.findById(id).orElse(null));
-        return "sala/sala-form";
-    }
+	@GetMapping("/editar/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("sala", salaService.findById(id).orElse(null));
+		return "sala/sala-form";
+	}
 
-    @GetMapping("/borrar/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        salaService.deleteById(id);
-        return "redirect:/admin/sala/";
-    }
+	@GetMapping("/borrar/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		salaService.deleteById(id);
+		return "redirect:/admin/sala/";
+	}
 }

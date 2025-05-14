@@ -8,17 +8,17 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Sala {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String nombre;
-    private int capacidad;
+	private String nombre;
+	private int capacidad;
 
-    @OneToMany(mappedBy = "sala")
-    @Builder.Default
-    private List<Entrada> entradas = new ArrayList<>();
+	@OneToMany(mappedBy = "sala", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Entrada> entradas = new ArrayList<>();
 }

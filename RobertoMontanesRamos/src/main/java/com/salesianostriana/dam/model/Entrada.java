@@ -7,28 +7,26 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Entrada {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	private String cliente;
+	private LocalDateTime fechaHora;
+	private double precio;
 
-    private String cliente;
-    private LocalDateTime fechaHora;
-    private double precio;
+	@ManyToOne
+	@JoinColumn(name = "sala_id")
+	private Sala sala;
 
-    @ManyToOne
-    @JoinColumn(name = "sala_id")
-    private Sala sala;
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
 
-    // Añade estos métodos si no los tienes
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
-
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
+	public void setFechaHora(LocalDateTime fechaHora) {
+		this.fechaHora = fechaHora;
+	}
 }

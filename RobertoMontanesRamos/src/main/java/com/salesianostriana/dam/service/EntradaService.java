@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EntradaService extends BaseService<Entrada, Long, EntradaRepository> {
-
-    public EntradaService(EntradaRepository repo) {
-        super(repo);
-    }
+	public EntradaService(EntradaRepository repo) {
+		super(repo);
+	}
 }

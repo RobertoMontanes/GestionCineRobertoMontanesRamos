@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SalaService extends BaseService<Sala, Long, SalaRepository> {
 
-    public SalaService(SalaRepository repo) {
-        super(repo);
-    }
+	public SalaService(SalaRepository repo) {
+		super(repo);
+	}
 }

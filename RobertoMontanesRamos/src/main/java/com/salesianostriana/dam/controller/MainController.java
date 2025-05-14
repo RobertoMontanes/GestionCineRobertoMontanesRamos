@@ -15,16 +15,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MainController {
 
-    private final EntradaService entradaService;
-    private final SalaService salaService;
+	private final EntradaService entradaService;
+	private final SalaService salaService;
 
-    @GetMapping("/")
-    public String index(Model model) {
-        List<Sala> salas = salaService.findAll();
-        List<Entrada> entradas = entradaService.findAll();
-        
-        model.addAttribute("salas", salas);
-        model.addAttribute("entradas", entradas);
-        return "index";
-    }
+	@GetMapping("/")
+	public String index(Model model) {
+		List<Sala> salas = salaService.findAll();
+		List<Entrada> entradas = entradaService.findAll();
+
+		model.addAttribute("salas", salas);
+		model.addAttribute("entradas", entradas);
+		return "index";
+	}
 }
