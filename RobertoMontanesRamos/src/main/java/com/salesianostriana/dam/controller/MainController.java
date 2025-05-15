@@ -21,10 +21,11 @@ public class MainController {
 	@GetMapping("/")
 	public String index(Model model) {
 		List<Sala> salas = salaService.findAll();
-		List<Entrada> entradas = entradaService.findAll();
-
+		List<Entrada> entradas = entradaService.findAll();	
 		model.addAttribute("salas", salas);
 		model.addAttribute("entradas", entradas);
 		return "index";
 	}
+	
+	
 }

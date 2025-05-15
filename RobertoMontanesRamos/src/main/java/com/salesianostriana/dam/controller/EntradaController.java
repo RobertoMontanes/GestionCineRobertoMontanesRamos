@@ -29,6 +29,7 @@ public class EntradaController {
 		model.addAttribute("entradas", entradaService.findAll());
 		return "entrada/list-entradas";
 	}
+	
 
 	@GetMapping("/nueva")
 	public String showForm(Model model) {
