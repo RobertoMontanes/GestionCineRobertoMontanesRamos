@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Cine Safari</title>
+	<link rel="icon" type="image/png" href="/img/logo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- Hero Section --> 
+	<section class="hero-section text-center"> 
+		<div class="container"> 
+			<h1 class="display-4 fw-bold">Cine Safari</h1>
+			 <p class="lead">La mejor experiencia cinematográfica en tu ciudad</p> 
+		 </div>
+	  </section>
+
+    <div class="container mb-5">
+        <!-- Quiénes Somos -->
+        <section class="mb-5">
+            <h2 class="text-center mb-4">¿Quiénes Somos?</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="lead">Cine Safari es tu destino cinematográfico desde 2010, ofreciendo las mejores películas en un ambiente único.</p>
+                    <p>Nuestras 5 salas incluyen tecnología 4K, sonido Dolby Atmos y la única pantalla IMAX de la ciudad. Más que un cine, somos una experiencia.</p>
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <h3 class="card-title"><i class="bi bi-star-fill text-warning"></i> Nuestra Misión</h3>
+                            <p class="card-text">Crear momentos memorables a través del séptimo arte, combinando tecnología de vanguardia con servicio excepcional.</p>
+                            
+                            <h3 class="card-title mt-4"><i class="bi bi-clock-fill text-primary"></i> Horarios</h3>
+                            <ul class="list-unstyled">
+                                <li><strong>Lunes a Viernes:</strong> 16:00 - 00:00</li>
+                                <li><strong>Sábados y Domingos:</strong> 12:00 - 02:00</li>
+                                <li><strong>Festivos:</strong> 12:00 - 02:00</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrusel de Imágenes con Thymeleaf -->
+		<section class="mb-5">
+		      <h2 class="text-center mb-4">Nuestras Instalaciones</h2>
+		      <div id="cineCarousel" class="carousel slide shadow-lg" data-bs-ride="carousel">
+		          <div class="carousel-indicators">
+		              <th:block th:each="img,iter : ${imagenes}">
+		                  <button type="button" data-bs-target="#cineCarousel" 
+		                          th:attr="data-bs-slide-to=${iter.index}"
+		                          th:class="${iter.first} ? 'active' : ''"
+		                          aria-label="'Slide ' + ${iter.count}"></button>
+		              </th:block>
+		          </div>
+		          <div class="carousel-inner rounded-3">
+		              <th:block th:each="img,iter : ${imagenes}">
+		                  <div th:class="${iter.first} ? 'carousel-item active' : 'carousel-item'">
+		                      <img th:src="${img}" class="d-block w-100" 
+		                           th:alt="'Imagen ' + ${iter.count} + ' de Cine Safari'"
+		                           style="height: 500px; object-fit: cover;">
+		                  </div>
+		              </th:block>
+		          </div>
+		          <button class="carousel-control-prev" type="button" data-bs-target="#cineCarousel" data-bs-slide="prev">
+		              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		              <span class="visually-hidden">Anterior</span>
+		          </button>
+		          <button class="carousel-control-next" type="button" data-bs-target="#cineCarousel" data-bs-slide="next">
+		              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		              <span class="visually-hidden">Siguiente</span>
+		          </button>
+		      </div>
+		  </section>
+
+        <!-- Información de Contacto y Formulario -->
+        <div class="row">
+            <!-- Información de Contacto -->
+            <div class="col-lg-5 mb-4">
+                <div class="card card-hover h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-geo-alt-fill contact-icon"></i>
+                            <h3>Visítanos</h3>
+                            <p>Calle del Cine, 123<br>41001 Sevilla, España</p>
+                            <div class="ratio ratio-16x9 mt-3">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.234265122786!2d-5.996703684368644!3d37.39263307984118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c1114be6291%3A0x34f018621cfe15cf!2sPlaza%20de%20Espa%C3%B1a%2C%20Sevilla!5e0!3m2!1ses!2ses!4v1621234567890!5m2!1ses!2ses" 
+                                        style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <i class="bi bi-telephone-fill contact-icon"></i>
+                            <h3>Llámanos</h3>
+                            <p>+34 955 123 456<br>Lunes a Domingo: 10:00 - 22:00</p>
+                        </div>
+                        
+                        <div>
+                            <i class="bi bi-envelope-fill contact-icon"></i>
+                            <h3>Escríbenos</h3>
+                            <p>info@cinesafari.com<br>soporte@cinesafari.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulario de Contacto -->
+            <div class="col-lg-7">
+                <div class="form-section card-hover">
+                    <h2 class="text-center mb-4">Formulario de Contacto</h2>
+                    <form id="contactForm" onsubmit="event.preventDefault(); mostrarAlerta();">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="asunto" class="form-label">Asunto</label>
+                            <select class="form-select" id="asunto">
+                                <option>Información general</option>
+                                <option>Reservas y entradas</option>
+                                <option>Eventos privados</option>
+                                <option>Soporte técnico</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-4">
+                                <i class="bi bi-send-fill me-2"></i> Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function mostrarAlerta() {
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
