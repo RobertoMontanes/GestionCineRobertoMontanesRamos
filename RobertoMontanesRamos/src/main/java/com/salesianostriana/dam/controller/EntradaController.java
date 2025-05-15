@@ -17,9 +17,10 @@ import java.time.LocalDateTime;
 @RequestMapping("/admin/entrada")
 @RequiredArgsConstructor
 public class EntradaController {
-	
+
 	@Autowired
 	private EntradaService entradaService;
+
 	@Autowired
 	private final SalaService salaService;
 

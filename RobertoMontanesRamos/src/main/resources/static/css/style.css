@@ -2,7 +2,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	background-image: url(../img/logo.jpg);
+	background-image: url(../img/fondo.jpg);
 }
 
 main {
@@ -21,6 +21,24 @@ main {
 .table th {
 	background-color: #f8f9fa;
 }
-table{
-	border: 1px solid #000;
+.footer {
+    background-color: #0E0B16;
+    color: #E7DFDD;
+}
+
+.footer-list li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.footer-list a {
+    color: #E7DFDD;
+    
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.footer-list a:hover {
+    color: #A239CA;
+    text-shadow: 0 0 5px #4717F6;
 }
