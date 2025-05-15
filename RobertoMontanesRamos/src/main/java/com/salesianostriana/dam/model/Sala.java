@@ -19,6 +19,6 @@ public class Sala {
 	private String nombre;
 	private int capacidad;
 
-	@OneToMany(mappedBy = "sala", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "sala", cascade = CascadeType.ALL, orphanRemoval = true) //estos atributos permiten que la sala se elimine y las entradas asociadas a ella también
 	private List<Entrada> entradas = new ArrayList<>();
 }
