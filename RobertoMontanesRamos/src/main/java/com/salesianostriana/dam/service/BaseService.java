@@ -9,6 +9,8 @@ public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> impleme
 
 	protected R repository;
 
+	
+
 	public BaseService(R repo) {
 		this.repository = repo;
 	}

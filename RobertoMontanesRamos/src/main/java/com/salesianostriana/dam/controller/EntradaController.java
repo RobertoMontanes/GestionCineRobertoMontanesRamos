@@ -24,11 +24,19 @@ public class EntradaController {
 	@Autowired
 	private final SalaService salaService;
 
-	@GetMapping("/")
-	public String listEntradas(Model model) {
-		model.addAttribute("entradas", entradaService.findAll());
-		return "entrada/list-entradas";
-	}
+	  @GetMapping("/")
+	    public String listEntradas(
+	        @RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortBy,
+	        @RequestParam(name = "direction", required = false, defaultValue = "asc") String direction,
+	        Model model) {
+	        
+	        model.addAttribute("entradas", entradaService.findAllOrdered(sortBy, direction));
+	        model.addAttribute("currentSort", sortBy);
+	        model.addAttribute("currentDirection", direction);
+	        model.addAttribute("salas", salaService.findAll());
+	        return "entrada/list-entradas";
+	    }
+
 	
 
 	@GetMapping("/nueva")

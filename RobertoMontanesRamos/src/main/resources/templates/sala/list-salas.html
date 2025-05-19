@@ -35,15 +35,29 @@
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead class="bg-warning text-dark">
-                            <tr>
-                                <th class="align-middle"><i class="bi bi-hash"></i> ID</th>
-                                <th class="align-middle"><i class="bi bi-film"></i> Nombre</th>
-                                <th class="align-middle"><i class="bi bi-people-fill"></i> Capacidad</th>
-                                <th class="align-middle"><i class="bi bi-ticket-perforated"></i> Entradas vendidas</th>
-                                <th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
-                            </tr>
-                        </thead>
+						<thead class="bg-warning text-dark">
+						    <tr>
+						        <th class="align-middle"><i class="bi bi-hash"></i> ID</th>
+						        <th class="align-middle"><i class="bi bi-film"></i> Nombre</th>
+						        <th class="align-middle">
+						            <a th:href="@{/admin/sala/(sortBy='capacidad', direction=${currentSort == 'capacidad' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+						                <i class="bi bi-people-fill"></i> Capacidad
+						                <span th:if="${currentSort == 'capacidad'}">
+						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
+						                </span>
+						            </a>
+						        </th>
+						        <th class="align-middle">
+						            <a th:href="@{/admin/sala/(sortBy='entradas', direction=${currentSort == 'entradas' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+						                <i class="bi bi-ticket-perforated"></i> Entradas vendidas
+						                <span th:if="${currentSort == 'entradas'}">
+						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
+						                </span>
+						            </a>
+						        </th>
+						        <th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
+						    </tr>
+						</thead>
                         <tbody>
                             <tr th:each="sala : ${salas}" class="align-middle">
                                 <td th:text="${sala.id}" class="fw-bold"></td>

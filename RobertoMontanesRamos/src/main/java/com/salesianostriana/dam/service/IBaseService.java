@@ -16,4 +16,7 @@ public interface IBaseService<T, ID> {
 	void delete(T t);
 
 	void deleteById(ID id);
+	
+	
+
 }

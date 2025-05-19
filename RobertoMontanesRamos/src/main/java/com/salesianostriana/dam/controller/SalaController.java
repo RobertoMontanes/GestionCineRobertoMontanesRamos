@@ -15,10 +15,17 @@ public class SalaController {
 	private final SalaService salaService;
 
 	@GetMapping("/")
-	public String listSalas(Model model) {
-		model.addAttribute("salas", salaService.findAll());
-		return "sala/list-salas";
-	}
+    public String listSalas(
+        @RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortBy,
+        @RequestParam(name = "direction", required = false, defaultValue = "asc") String direction,
+        Model model) {
+        
+        model.addAttribute("salas", salaService.findAllOrdered(sortBy, direction));
+        model.addAttribute("currentSort", sortBy);
+        model.addAttribute("currentDirection", direction);
+        return "sala/list-salas";
+    }
+
 
 	@GetMapping("/nueva")
 	public String showForm(Model model) {
