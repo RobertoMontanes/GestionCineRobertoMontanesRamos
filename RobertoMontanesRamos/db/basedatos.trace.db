@@ -663,3 +663,7 @@ SELECT * FROM ENTRADA ID <3 [42000-232]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM ENTRADA ID [*]<3"
 Syntax error in SQL statement "SELECT * FROM ENTRADA ID [*]<3"; SQL statement:
 SELECT * FROM ENTRADA ID <3 [42000-232]
+2025-05-19 12:56:14.104090+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "NOMBRE CHARACTER VARYING(255)": "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (675)"
+Value too long for column "NOMBRE CHARACTER VARYING(255)": "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... (675)"; SQL statement:
+insert into sala (capacidad,nombre,id) values (?,?,default) [22001-232]
