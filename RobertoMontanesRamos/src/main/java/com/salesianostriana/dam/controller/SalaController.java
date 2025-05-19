@@ -43,4 +43,5 @@ public class SalaController {
 		salaService.deleteById(id);
 		return "redirect:/admin/sala/";
 	}
+	
 }

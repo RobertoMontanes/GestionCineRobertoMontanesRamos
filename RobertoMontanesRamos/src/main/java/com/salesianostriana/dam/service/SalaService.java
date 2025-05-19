@@ -9,5 +9,7 @@ public class SalaService extends BaseService<Sala, Long, SalaRepository> {
 
 	public SalaService(SalaRepository repo) {
 		super(repo);
+		
+	
 	}
 }
