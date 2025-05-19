@@ -76,9 +76,7 @@ main {
 	border-radius: 10px;
 	padding: 2rem;
 }
-<<<<<<< HEAD
 
-=======
 .error-container {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 15px;
@@ -93,4 +91,18 @@ main {
     40% {transform: translateY(-30px);}
     60% {transform: translateY(-15px);}
 }
->>>>>>> 536bbb5ed2cacf225fec241244d191a900f1db8f
+
+.btn-danger:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+
+#confirmDeleteModal .modal-header {
+  background-color: #dc3545;
+  border-bottom: none;
+}
+
+#confirmDeleteModal .modal-content {
+  border: 2px solid #dc3545;
+}

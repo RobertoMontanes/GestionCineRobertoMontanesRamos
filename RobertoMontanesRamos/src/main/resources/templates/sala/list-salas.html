@@ -52,20 +52,25 @@
                                 </td>
                                 <td th:text="${sala.capacidad}"></td>
                                 <td th:text="${#lists.size(sala.entradas)}"></td>
-                                <td class="text-center">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <a th:href="@{/admin/sala/editar/{id}(id=${sala.id})}"
-                                           class="btn btn-outline-warning"
-                                           title="Editar">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a th:href="@{/admin/sala/borrar/{id}(id=${sala.id})}"
-                                           class="btn btn-outline-danger"
-                                           title="Borrar">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
-                                </td>
+								<td class="text-center">
+								    <div class="btn-group btn-group-sm" role="group">
+								        <a th:href="@{/admin/sala/editar/{id}(id=${sala.id})}"
+								           class="btn btn-outline-warning"
+								           title="Editar">
+								            <i class="bi bi-pencil-square"></i>
+								        </a>
+								        <button type="button" 
+								                class="btn btn-outline-danger"
+								                title="Borrar"
+								                data-bs-toggle="modal" 
+								                data-bs-target="#confirmDeleteModal"
+								                th:attr="data-delete-url=@{/admin/sala/borrar/{id}(id=${sala.id})}"
+								                th:data-entity-name="${'la sala ' + sala.nombre}"
+								                onclick="setDeleteData(this)">
+								            <i class="bi bi-trash"></i>
+								        </button>
+								    </div>
+								</td>
                             </tr>
                         </tbody>
                     </table>
@@ -84,8 +89,46 @@
             </div>
         </div>
     </main>
+	
+	<!-- Modal de confirmación de borrado -->
+	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header bg-danger text-white">
+	                <h5 class="modal-title" id="confirmDeleteModalLabel">
+	                    <i class="bi bi-exclamation-triangle"></i> Confirmar borrado
+	                </h5>
+	                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <span id="deleteMessage"></span>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+	                    <i class="bi bi-x-circle"></i> Cancelar
+	                </button>
+	                <a id="confirmDeleteButton" class="btn btn-danger">
+	                    <i class="bi bi-trash"></i> Confirmar
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
+	
+	
+			
+			<script>
+			    function setDeleteData(button) {
+			        const deleteUrl = button.getAttribute('data-delete-url');
+			        const entityName = button.getAttribute('data-entity-name');
+			        
+			        document.getElementById('confirmDeleteButton').href = deleteUrl;
+			        document.getElementById('deleteMessage').textContent = 
+			            `¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
+			    }
+			</script>
 </body>
 
 </html>

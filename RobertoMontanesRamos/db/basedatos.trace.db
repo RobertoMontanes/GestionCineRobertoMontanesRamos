@@ -650,3 +650,16 @@ INSERT INTO entrada (id, pelicula, fecha_hora, precio, vendida, cliente_id, sala
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
 	at com.salesianostriana.dam.RobertoMontanesRamosApplication.main(RobertoMontanesRamosApplication.java:10)
+2025-05-19 08:44:53.904344+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM ENTRADA \000d\000a[*]10WHERE ID > 3"
+Syntax error in SQL statement "SELECT * FROM ENTRADA \000d\000a[*]10WHERE ID > 3"; SQL statement:
+SELECT * FROM ENTRADA 
+10WHERE ID > 3 [42000-232]
+2025-05-19 08:45:08.409255+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM ENTRADA ID [*]<3"
+Syntax error in SQL statement "SELECT * FROM ENTRADA ID [*]<3"; SQL statement:
+SELECT * FROM ENTRADA ID <3 [42000-232]
+2025-05-19 08:45:12.529052+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM ENTRADA ID [*]<3"
+Syntax error in SQL statement "SELECT * FROM ENTRADA ID [*]<3"; SQL statement:
+SELECT * FROM ENTRADA ID <3 [42000-232]

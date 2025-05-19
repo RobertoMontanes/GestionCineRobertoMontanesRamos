@@ -13,7 +13,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
     <div th:replace="~{fragments/header :: header}"></div>
     
     <main class="container my-5">
@@ -25,13 +24,7 @@
                 <i class="bi bi-plus-circle"></i> Nueva Entrada
             </a>
         </div>
-=======
-	<div th:replace="~{fragments/header :: header}"></div>
 	
-	
-	<main class="container my-5">
-		<h1 class="mb-4">Listado de Entradas</h1>
->>>>>>> 536bbb5ed2cacf225fec241244d191a900f1db8f
 
         <div class="card border-primary shadow">
             <div class="card-header bg-primary text-white">
@@ -62,20 +55,25 @@
                                 </td>
                                 <td th:text="${#temporals.format(entrada.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
                                 <td class="fw-bold text-success" th:text="${#numbers.formatDecimal(entrada.precio, 1, 2)} + ' €'"></td>
-                                <td class="text-center">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <a th:href="@{/admin/entrada/editar/{id}(id=${entrada.id})}"
-                                           class="btn btn-outline-primary"
-                                           title="Editar">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <a th:href="@{/admin/entrada/borrar/{id}(id=${entrada.id})}"
-                                           class="btn btn-outline-danger"
-                                           title="Borrar">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
-                                </td>
+								<td class="text-center">
+								    <div class="btn-group btn-group-sm" role="group">
+								        <a th:href="@{/admin/entrada/editar/{id}(id=${entrada.id})}"
+								           class="btn btn-outline-primary"
+								           title="Editar">
+								            <i class="bi bi-pencil-square"></i>
+								        </a>
+								        <button type="button" 
+								                class="btn btn-outline-danger"
+								                title="Borrar"
+								                data-bs-toggle="modal" 
+								                data-bs-target="#confirmDeleteModal"
+								                th:attr="data-delete-url=@{/admin/entrada/borrar/{id}(id=${entrada.id})}"
+								                th:data-entity-name="${'la entrada de ' + entrada.cliente}"
+								                onclick="setDeleteData(this)">
+								            <i class="bi bi-trash"></i>
+								        </button>
+								    </div>
+								</td>
                             </tr>
                         </tbody>
                     </table>
@@ -94,8 +92,48 @@
             </div>
         </div>
     </main>
+	
+	<!-- Modal de confirmación de borrado -->
+	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header bg-danger text-white">
+	                <h5 class="modal-title" id="confirmDeleteModalLabel">
+	                    <i class="bi bi-exclamation-triangle"></i> Confirmar borrado
+	                </h5>
+	                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <span id="deleteMessage"></span>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+	                    <i class="bi bi-x-circle"></i> Cancelar
+	                </button>
+	                <a id="confirmDeleteButton" class="btn btn-danger">
+	                    <i class="bi bi-trash"></i> Confirmar
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
+	
+	
+	
+
+			
+			<script>
+			    function setDeleteData(button) {
+			        const deleteUrl = button.getAttribute('data-delete-url');
+			        const entityName = button.getAttribute('data-entity-name');
+			        
+			        document.getElementById('confirmDeleteButton').href = deleteUrl;
+			        document.getElementById('deleteMessage').textContent = 
+			            `¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
+			    }
+			</script>
 </body>
 
 </html>
