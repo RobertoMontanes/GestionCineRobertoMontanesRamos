@@ -2,147 +2,152 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta name="description" content="Cine Safari - Listado de Salas">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cine Safari - Lista de Sala</title>
-    <link rel="icon" type="image/png" href="/img/logo.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+	<meta name="description"
+		content="Listado de salas disponibles en Cine Safari. 
+		Gestiona la configuración, capacidad y estado de todas tus salas de cine.">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cine Safari - Lista de Sala</title>
+	<link rel="icon" type="image/png" href="/img/logo.png" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <div th:replace="~{fragments/header :: header}"></div>
-    
-    <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0">
-                <i class="bi bi-door-open"></i> Listado de Salas
-            </h1>
-            <a th:href="@{/admin/sala/nueva}" class="btn btn-warning text-dark fw-bold">
-                <i class="bi bi-plus-circle"></i> Nueva Sala
-            </a>
-        </div>
+	<div th:replace="~{fragments/header :: header}"></div>
 
-        <div class="card border-warning shadow">
-            <div class="card-header bg-warning text-dark">
-                <h3 class="mb-0 fw-bold">
-                    <i class="bi bi-list-check"></i> Registro de Salas
-                </h3>
-            </div>
-            
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+	<main class="container my-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<h1 class="mb-0">
+				<i class="bi bi-door-open"></i> Listado de Salas
+			</h1>
+			<a th:href="@{/admin/sala/nueva}" class="btn btn-warning text-dark fw-bold">
+				<i class="bi bi-plus-circle"></i> Nueva Sala
+			</a>
+		</div>
+
+		<div class="card border-warning shadow">
+			<div class="card-header bg-warning text-dark">
+				<h3 class="mb-0 fw-bold">
+					<i class="bi bi-list-check"></i> Registro de Salas
+				</h3>
+			</div>
+
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-hover mb-0">
 						<thead class="bg-warning text-dark">
-						    <tr>
-						        <th class="align-middle"><i class="bi bi-hash"></i> ID</th>
-						        <th class="align-middle"><i class="bi bi-film"></i> Nombre</th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/sala/(sortBy='capacidad', direction=${currentSort == 'capacidad' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-people-fill"></i> Capacidad
-						                <span th:if="${currentSort == 'capacidad'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/sala/(sortBy='entradas', direction=${currentSort == 'entradas' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-ticket-perforated"></i> Entradas vendidas
-						                <span th:if="${currentSort == 'entradas'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
-						    </tr>
+							<tr>
+								<th class="align-middle"><i class="bi bi-hash"></i> ID</th>
+								<th class="align-middle"><i class="bi bi-film"></i> Nombre</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/sala/(sortBy='capacidad', direction=${currentSort == 'capacidad' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-people-fill"></i> Capacidad
+										<span th:if="${currentSort == 'capacidad'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/sala/(sortBy='entradas', direction=${currentSort == 'entradas' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-ticket-perforated"></i> Entradas vendidas
+										<span th:if="${currentSort == 'entradas'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-up' : 'bi bi-sort-down'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
+							</tr>
 						</thead>
-                        <tbody>
-                            <tr th:each="sala : ${salas}" class="align-middle">
-                                <td th:text="${sala.id}" class="fw-bold"></td>
-                                <td>
-                                    <span class="badge bg-dark" th:text="${sala.nombre}"></span>
-                                </td>
-                                <td th:text="${sala.capacidad}"></td>
-                                <td th:text="${#lists.size(sala.entradas)}"></td>
-								<td class="text-center">
-								    <div class="btn-group btn-group-sm" role="group">
-								        <a th:href="@{/admin/sala/editar/{id}(id=${sala.id})}"
-								           class="btn btn-outline-warning"
-								           title="Editar">
-								            <i class="bi bi-pencil-square"></i>
-								        </a>
-								        <button type="button" 
-								                class="btn btn-outline-danger"
-								                title="Borrar"
-								                data-bs-toggle="modal" 
-								                data-bs-target="#confirmDeleteModal"
-								                th:attr="data-delete-url=@{/admin/sala/borrar/{id}(id=${sala.id})}"
-								                th:data-entity-name="${'la sala ' + sala.nombre}"
-								                onclick="setDeleteData(this)">
-								            <i class="bi bi-trash"></i>
-								        </button>
-								    </div>
+						<tbody>
+							<tr th:each="sala : ${salas}" class="align-middle">
+								<td th:text="${sala.id}" class="fw-bold"></td>
+								<td>
+									<span class="badge bg-dark" th:text="${sala.nombre}"></span>
 								</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="card-footer bg-light">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span class="fw-bold">Total salas:</span> <span th:text="${salas.size()}"></span>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <span class="fw-bold">Última actualización:</span> <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm')}"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-	
+								<td th:text="${sala.capacidad}"></td>
+								<td th:text="${#lists.size(sala.entradas)}"></td>
+								<td class="text-center">
+									<div class="btn-group btn-group-sm" role="group">
+										<a th:href="@{/admin/sala/editar/{id}(id=${sala.id})}"
+											class="btn btn-outline-warning" title="Editar">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<button type="button" class="btn btn-outline-danger" title="Borrar"
+											data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+											th:attr="data-delete-url=@{/admin/sala/borrar/{id}(id=${sala.id})}"
+											th:data-entity-name="${'la sala ' + sala.nombre}"
+											onclick="setDeleteData(this)">
+											<i class="bi bi-trash"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="card-footer bg-light">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="fw-bold">Total salas:</span> <span th:text="${salas.size()}"></span>
+					</div>
+					<div class="col-md-6 text-md-end">
+						<span class="fw-bold">Última actualización:</span> <span
+							th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm')}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
 	<!-- Modal de confirmación de borrado -->
-	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header bg-danger text-white">
-	                <h5 class="modal-title" id="confirmDeleteModalLabel">
-	                    <i class="bi bi-exclamation-triangle"></i> Confirmar borrado
-	                </h5>
-	                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-	            </div>
-	            <div class="modal-body">
-	                <span id="deleteMessage"></span>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-	                    <i class="bi bi-x-circle"></i> Cancelar
-	                </button>
-	                <a id="confirmDeleteButton" class="btn btn-danger">
-	                    <i class="bi bi-trash"></i> Confirmar
-	                </a>
-	            </div>
-	        </div>
-	    </div>
+	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white">
+					<h5 class="modal-title" id="confirmDeleteModalLabel">
+						<i class="bi bi-exclamation-triangle"></i> Confirmar borrado
+					</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<span id="deleteMessage"></span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+						<i class="bi bi-x-circle"></i> Cancelar
+					</button>
+					<a id="confirmDeleteButton" class="btn btn-danger">
+						<i class="bi bi-trash"></i> Confirmar
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
-	
-	
-			
-			<script>
-			    function setDeleteData(button) {
-			        const deleteUrl = button.getAttribute('data-delete-url');
-			        const entityName = button.getAttribute('data-entity-name');
-			        
-			        document.getElementById('confirmDeleteButton').href = deleteUrl;
-			        document.getElementById('deleteMessage').textContent = 
-			            `¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
-			    }
-			</script>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+
+	<script>
+		function setDeleteData(button) {
+			const deleteUrl = button.getAttribute('data-delete-url');
+			const entityName = button.getAttribute('data-entity-name');
+
+			document.getElementById('confirmDeleteButton').href = deleteUrl;
+			document.getElementById('deleteMessage').textContent =
+				`¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
+		}
+	</script>
 </body>
 
 </html>

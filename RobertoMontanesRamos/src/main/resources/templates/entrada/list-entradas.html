@@ -2,166 +2,176 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta name="description" content="Cine Safari - Listado de Entradas">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cine Safari - Lista de Entradas</title>
-    <link rel="icon" type="image/png" href="/img/logo.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+	<meta name="description"
+		content="Listado completo de entradas vendidas en Cine Safari.
+		 Consulta, edita o gestiona todas las reservas de tu cine.">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cine Safari - Lista de Entradas</title>
+	<link rel="icon" type="image/png" href="/img/logo.png" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <div th:replace="~{fragments/header :: header}"></div>
-    
-    <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-primary mb-0">
-                <i class="bi bi-ticket-perforated"></i> Listado de Entradas
-            </h1>
-            <a th:href="@{/admin/entrada/nueva}" class="btn btn-primary text-white fw-bold">
-                <i class="bi bi-plus-circle"></i> Nueva Entrada
-            </a>
-        </div>
-	
+	<div th:replace="~{fragments/header :: header}"></div>
 
-        <div class="card border-primary shadow">
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0 fw-bold">
-                    <i class="bi bi-list-check"></i> Registro de Entradas
-                </h3>
-            </div>
-            
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+	<main class="container my-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<h1 class="text-primary mb-0">
+				<i class="bi bi-ticket-perforated"></i> Listado de Entradas
+			</h1>
+			<a th:href="@{/admin/entrada/nueva}" class="btn btn-primary text-white fw-bold">
+				<i class="bi bi-plus-circle"></i> Nueva Entrada
+			</a>
+		</div>
+
+
+		<div class="card border-primary shadow">
+			<div class="card-header bg-primary text-white">
+				<h3 class="mb-0 fw-bold">
+					<i class="bi bi-list-check"></i> Registro de Entradas
+				</h3>
+			</div>
+
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-hover mb-0">
 						<thead class="bg-primary text-white">
-						    <tr>
-						        <th class="align-middle"><i class="bi bi-hash"></i> ID</th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/entrada/(sortBy='cliente', direction=${currentSort == 'cliente' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-person"></i> Cliente
-						                <span th:if="${currentSort == 'cliente'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-alpha-down' : 'bi bi-sort-alpha-up'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/entrada/(sortBy='sala', direction=${currentSort == 'sala' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-door-open"></i> Sala
-						                <span th:if="${currentSort == 'sala'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-alpha-down' : 'bi bi-sort-alpha-up'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/entrada/(sortBy='fecha', direction=${currentSort == 'fecha' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-calendar-event"></i> Fecha
-						                <span th:if="${currentSort == 'fecha'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-down' : 'bi bi-sort-up'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle">
-						            <a th:href="@{/admin/entrada/(sortBy='precio', direction=${currentSort == 'precio' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
-						                <i class="bi bi-cash-stack"></i> Precio
-						                <span th:if="${currentSort == 'precio'}">
-						                    <i th:class="${currentDirection == 'asc' ? 'bi bi-sort-numeric-down' : 'bi bi-sort-numeric-up'}"></i>
-						                </span>
-						            </a>
-						        </th>
-						        <th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
-						    </tr>
+							<tr>
+								<th class="align-middle"><i class="bi bi-hash"></i> ID</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/entrada/(sortBy='cliente', direction=${currentSort == 'cliente' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-person"></i> Cliente
+										<span th:if="${currentSort == 'cliente'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-alpha-down' : 'bi bi-sort-alpha-up'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/entrada/(sortBy='sala', direction=${currentSort == 'sala' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-door-open"></i> Sala
+										<span th:if="${currentSort == 'sala'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-alpha-down' : 'bi bi-sort-alpha-up'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/entrada/(sortBy='fecha', direction=${currentSort == 'fecha' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-calendar-event"></i> Fecha
+										<span th:if="${currentSort == 'fecha'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-down' : 'bi bi-sort-up'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle">
+									<a
+										th:href="@{/admin/entrada/(sortBy='precio', direction=${currentSort == 'precio' && currentDirection == 'asc' ? 'desc' : 'asc'})}">
+										<i class="bi bi-cash-stack"></i> Precio
+										<span th:if="${currentSort == 'precio'}">
+											<i
+												th:class="${currentDirection == 'asc' ? 'bi bi-sort-numeric-down' : 'bi bi-sort-numeric-up'}"></i>
+										</span>
+									</a>
+								</th>
+								<th class="align-middle text-center"><i class="bi bi-gear"></i> Acciones</th>
+							</tr>
 						</thead>
-                        <tbody>
-                            <tr th:each="entrada : ${entradas}" class="align-middle">
-                                <td th:text="${entrada.id}" class="fw-bold"></td>
-                                <td th:text="${entrada.cliente}"></td>
-                                <td>
-                                    <span class="badge bg-info text-dark" th:text="${entrada.sala.nombre}"></span>
-                                </td>
-                                <td th:text="${#temporals.format(entrada.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
-                                <td class="fw-bold text-success" th:text="${#numbers.formatDecimal(entrada.precio, 1, 2)} + ' €'"></td>
-								<td class="text-center">
-								    <div class="btn-group btn-group-sm" role="group">
-								        <a th:href="@{/admin/entrada/editar/{id}(id=${entrada.id})}"
-								           class="btn btn-outline-primary"
-								           title="Editar">
-								            <i class="bi bi-pencil-square"></i>
-								        </a>
-								        <button type="button" 
-								                class="btn btn-outline-danger"
-								                title="Borrar"
-								                data-bs-toggle="modal" 
-								                data-bs-target="#confirmDeleteModal"
-								                th:attr="data-delete-url=@{/admin/entrada/borrar/{id}(id=${entrada.id})}"
-								                th:data-entity-name="${'la entrada de ' + entrada.cliente}"
-								                onclick="setDeleteData(this)">
-								            <i class="bi bi-trash"></i>
-								        </button>
-								    </div>
+						<tbody>
+							<tr th:each="entrada : ${entradas}" class="align-middle">
+								<td th:text="${entrada.id}" class="fw-bold"></td>
+								<td th:text="${entrada.cliente}"></td>
+								<td>
+									<span class="badge bg-info text-dark" th:text="${entrada.sala.nombre}"></span>
 								</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="card-footer bg-light">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span class="fw-bold">Total entradas:</span> <span th:text="${entradas.size()}"></span>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <span class="fw-bold">Última actualización:</span> <span th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm')}"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-	
+								<td th:text="${#temporals.format(entrada.fechaHora, 'dd/MM/yyyy HH:mm')}"></td>
+								<td class="fw-bold text-success"
+									th:text="${#numbers.formatDecimal(entrada.precio, 1, 2)} + ' €'"></td>
+								<td class="text-center">
+									<div class="btn-group btn-group-sm" role="group">
+										<a th:href="@{/admin/entrada/editar/{id}(id=${entrada.id})}"
+											class="btn btn-outline-primary" title="Editar">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<button type="button" class="btn btn-outline-danger" title="Borrar"
+											data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+											th:attr="data-delete-url=@{/admin/entrada/borrar/{id}(id=${entrada.id})}"
+											th:data-entity-name="${'la entrada de ' + entrada.cliente}"
+											onclick="setDeleteData(this)">
+											<i class="bi bi-trash"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="card-footer bg-light">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="fw-bold">Total entradas:</span> <span th:text="${entradas.size()}"></span>
+					</div>
+					<div class="col-md-6 text-md-end">
+						<span class="fw-bold">Última actualización:</span> <span
+							th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy HH:mm')}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
 	<!-- Modal de confirmación de borrado -->
-	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header bg-danger text-white">
-	                <h5 class="modal-title" id="confirmDeleteModalLabel">
-	                    <i class="bi bi-exclamation-triangle"></i> Confirmar borrado
-	                </h5>
-	                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-	            </div>
-	            <div class="modal-body">
-	                <span id="deleteMessage"></span>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-	                    <i class="bi bi-x-circle"></i> Cancelar
-	                </button>
-	                <a id="confirmDeleteButton" class="btn btn-danger">
-	                    <i class="bi bi-trash"></i> Confirmar
-	                </a>
-	            </div>
-	        </div>
-	    </div>
+	<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white">
+					<h5 class="modal-title" id="confirmDeleteModalLabel">
+						<i class="bi bi-exclamation-triangle"></i> Confirmar borrado
+					</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<span id="deleteMessage"></span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+						<i class="bi bi-x-circle"></i> Cancelar
+					</button>
+					<a id="confirmDeleteButton" class="btn btn-danger">
+						<i class="bi bi-trash"></i> Confirmar
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
-	
-	
-	
+	<div th:replace="~{fragments/footer :: footer}"></div>
 
-			
-			<script>
-			    function setDeleteData(button) {
-			        const deleteUrl = button.getAttribute('data-delete-url');
-			        const entityName = button.getAttribute('data-entity-name');
-			        
-			        document.getElementById('confirmDeleteButton').href = deleteUrl;
-			        document.getElementById('deleteMessage').textContent = 
-			            `¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
-			    }
-			</script>
+
+
+
+
+	<script>
+		function setDeleteData(button) {
+			const deleteUrl = button.getAttribute('data-delete-url');
+			const entityName = button.getAttribute('data-entity-name');
+
+			document.getElementById('confirmDeleteButton').href = deleteUrl;
+			document.getElementById('deleteMessage').textContent =
+				`¿Estás seguro que quieres borrar ${entityName}? Esta acción no se puede deshacer.`;
+		}
+	</script>
 </body>
 
 </html>
