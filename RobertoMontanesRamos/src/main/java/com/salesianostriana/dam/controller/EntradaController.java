@@ -25,8 +25,7 @@ public class EntradaController {
 	private final SalaService salaService;
 
 	  @GetMapping("/")
-	    public String listEntradas(
-	        @RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortBy,
+	    public String listEntradas(@RequestParam(name = "sortBy", required = false, defaultValue = "id") String sortBy,
 	        @RequestParam(name = "direction", required = false, defaultValue = "asc") String direction,
 	        Model model) {
 	        
